@@ -6,6 +6,7 @@ public class Estudiante {
     private int edad;
     private static int contador; //Variable de Clase
 
+
     public Estudiante(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
