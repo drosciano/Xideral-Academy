@@ -4,4 +4,8 @@ public class PointGuard extends Jugador {
         super(nombre, edad, numero, fielGoalPer, threePointPer);
     }
 
+    @Override
+    String funcion() {
+        return "Hacer jugadas, pasar el balon";
+    }
 }

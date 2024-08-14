@@ -3,4 +3,8 @@ public class ShootingGuard extends Jugador{
         super(nombre, edad, numero, fielGoalPer, threePointPer);
     }
 
+    @Override
+    String funcion() {
+        return "Ser un tirador eficiente";
+    }
 }

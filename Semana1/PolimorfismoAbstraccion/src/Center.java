@@ -3,4 +3,8 @@ public class Center extends Jugador {
         super(nombre, edad, numero, fielGoalPer, threePointPer);
     }
 
+    @Override
+    String funcion() {
+        return "Ser alto para agarrar rebotes y jugadas de poder";
+    }
 }

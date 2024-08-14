@@ -25,6 +25,11 @@ public class Main {
         System.out.println("------------------------------------------------------------------------");
         partido1.estadisticas();
         partido1.marcadorFinal();
+
+        for(Jugador j : eq1) {
+           System.out.println("La funcion del " + j.getClass().getSimpleName() + " es " + j.funcion());
+        }
     }
+
 
 }

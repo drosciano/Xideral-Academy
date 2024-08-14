@@ -3,4 +3,8 @@ public class SmallForward extends Jugador {
         super(nombre, edad, numero, fielGoalPer, threePointPer);
     }
 
+    @Override
+    String funcion() {
+        return "Ser una peligroso tirando y entrando a la canasta";
+    }
 }

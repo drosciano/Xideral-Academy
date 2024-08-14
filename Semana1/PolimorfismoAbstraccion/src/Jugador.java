@@ -36,6 +36,8 @@ public abstract class Jugador {
         }
     }
 
+    abstract String funcion();
+
     int tirar() {
         int tiro;
         double prob;
