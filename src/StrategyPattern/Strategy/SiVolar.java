@@ -1,4 +1,4 @@
-package Strategy;
+package StrategyPattern.Strategy;
 
 public class SiVolar implements ComportamientoVolar {
     @Override

@@ -1,4 +1,4 @@
-package Strategy;
+package StrategyPattern.Strategy;
 
 public interface ComportamientoVolar {
 
