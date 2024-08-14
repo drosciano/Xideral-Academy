@@ -20,7 +20,11 @@ public class Main {
 
 
         System.out.print(partido1);
+        System.out.println("------------------------------------------------------------------------");
         partido1.simularPartido();
+        System.out.println("------------------------------------------------------------------------");
+        partido1.estadisticas();
+        partido1.marcadorFinal();
     }
 
 }

@@ -66,5 +66,21 @@ public class Partido  {
             //Imprimir el Marcador para ver como va despues de cada posesion
             System.out.println(equipo1.nombre + " | " + marcador[0] + " | " + marcador[1] + " | " + equipo2.nombre);
         }
+        System.out.println();
+        System.out.println((marcador[0] != marcador[1] ? (marcador[0] > marcador[1] ? "LOS " + equipo1.nombre + " HAN GANADO!!!" : "LOS " + equipo2.nombre + " HAN GANADO!!!") : "El Partido Termino en Empate"));
+    }
+    public void marcadorFinal() {
+        System.out.println(equipo1.nombre + " | " + marcador[0] + " | " + marcador[1] + " | " + equipo2.nombre);
+    }
+
+    public void estadisticas() {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("%-40s %s" , equipo1.nombre, equipo2.nombre) + "\n");
+        for(int i = 0; i < equipo1.jugadores.length; i++) {
+            result.append(String.format("%-40s %s" , equipo1.jugadores[i] + " " + equipo1.jugadores[i].puntos + " puntos",
+                    equipo2.jugadores[i] + " " + equipo2.jugadores[i].puntos + " puntos") + "\n");
+        }
+
+        System.out.println(result);
     }
 }
