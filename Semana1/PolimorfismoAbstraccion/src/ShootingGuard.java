@@ -1,10 +1,6 @@
 public class ShootingGuard extends Jugador{
-    ShootingGuard(String nombre, int edad) {
-        super(nombre, edad);
+    ShootingGuard(String nombre, int edad, int numero, double fielGoalPer, double threePointPer) {
+        super(nombre, edad, numero, fielGoalPer, threePointPer);
     }
 
-    @Override
-    int tirar() {
-        return 2;
-    }
 }

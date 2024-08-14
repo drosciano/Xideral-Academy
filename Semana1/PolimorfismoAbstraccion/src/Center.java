@@ -1,10 +1,6 @@
 public class Center extends Jugador {
-    Center(String nombre, int edad, Equipo equipo) {
-        super(nombre, edad);
+    Center(String nombre, int edad, int numero, double fielGoalPer, double threePointPer) {
+        super(nombre, edad, numero, fielGoalPer, threePointPer);
     }
 
-    @Override
-    int tirar() {
-        return 2;
-    }
 }
