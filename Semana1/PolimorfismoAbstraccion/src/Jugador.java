@@ -1,11 +1,11 @@
 public abstract class Jugador {
-    String nombre;
-    int edad;
-    int numero;
-    String pos;
-    int puntos;
-    double fieldGoalPer;
-    double threePointPer;
+    private String nombre;
+    private int edad;
+    private int numero;
+    private String pos;
+    private int puntos;
+    private double fieldGoalPer;
+    private double threePointPer;
 
     Jugador(String nombre, int edad, int numero, double fieldGoalPer, double threePointPer) {
         this.nombre = nombre;
@@ -37,6 +37,14 @@ public abstract class Jugador {
     }
 
     abstract String funcion();
+
+    int getPuntos() {
+        return this.puntos;
+    }
+
+    void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
 
     int tirar() {
         int tiro;

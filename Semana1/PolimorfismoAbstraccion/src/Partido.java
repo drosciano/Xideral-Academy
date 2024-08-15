@@ -35,10 +35,10 @@ public class Partido  {
     public void simularPartido() {
         //Asegurarme que los puntos de todos los jugadores sea 0
         for (Jugador j : equipo1.jugadores) {
-            j.puntos = 0;
+            j.setPuntos(0);
         }
         for (Jugador j : equipo2.jugadores) {
-            j.puntos = 0;
+            j.setPuntos(0);
         }
         //Simular el numero de posesiones del partido.
         //La Primera Posesion es del equipo 1, la segunda del equipo 2 y asi sucesivamente
@@ -77,8 +77,8 @@ public class Partido  {
         StringBuilder result = new StringBuilder();
         result.append(String.format("%-40s %s" , equipo1.nombre, equipo2.nombre) + "\n");
         for(int i = 0; i < equipo1.jugadores.length; i++) {
-            result.append(String.format("%-40s %s" , equipo1.jugadores[i] + " " + equipo1.jugadores[i].puntos + " puntos",
-                    equipo2.jugadores[i] + " " + equipo2.jugadores[i].puntos + " puntos") + "\n");
+            result.append(String.format("%-40s %s" , equipo1.jugadores[i] + " " + equipo1.jugadores[i].getPuntos() + " puntos",
+                    equipo2.jugadores[i] + " " + equipo2.jugadores[i].getPuntos() + " puntos") + "\n");
         }
 
         System.out.println(result);
