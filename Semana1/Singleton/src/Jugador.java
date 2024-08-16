@@ -1,20 +1,28 @@
 import com.sun.management.UnixOperatingSystemMXBean;
 
 public class Jugador {
-    Servidor servidor;
-    String usuario;
-    String contraseña;
+    private Servidor servidor;
+    private String usuario;
+    private String contraseña;
 
     Jugador(String usuario, String contraseña){
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
 
-    void conectarServidor(String usuario, String contraseña) {
+    public Servidor getServidor() {
+        return servidor;
+    }
+
+    void conectarServidor(String usuario, String contraseña, String contraseñaServidor) {
         if (this.usuario == usuario && this.contraseña == contraseña) {
-            servidor = Servidor.getInstance();
-            Servidor.conectar(this);
-            System.out.println(usuario + " se ha conectado a " + servidor);
+            try {
+                servidor = Servidor.getInstance();
+                Servidor.conectar(this, contraseñaServidor);
+                System.out.println(usuario + " se ha conectado a " + servidor);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
         else {
             System.out.println("Usuario o Contraseña equivocada, intente de nuevo.");
@@ -27,11 +35,16 @@ public class Jugador {
     }
 
     void interactuarCon(Jugador j) {
-        if (servidor.estaConectado(j)) {
-            System.out.println("Hola " + j + "! ¿Cómo estas?");
+        if (servidor != null) {
+            if (servidor.estaConectado(j)) {
+                System.out.println(usuario + ": Hola " + j + "! ¿Cómo estas?");
+            }
+            else {
+                System.out.println("No se pudo encontrar a " + j + " en el servidor");
+            }
         }
         else {
-            System.out.println("No se pudo encontrar a " + j + " en el servidor");
+            System.out.println("No puedes interactuar sin estar conectado");
         }
     }
 

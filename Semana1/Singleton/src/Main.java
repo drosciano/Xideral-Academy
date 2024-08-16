@@ -1,23 +1,27 @@
 public class Main {
     public static void main(String[] args) {
         Jugador yo = new Jugador("Duilio", "12345");
-
-        yo.conectarServidor("Duilio", "12345");
-
-        //yo.desconectarServidor();
-
         Jugador j2 = new Jugador("Mauricio", "12345");
-        j2.conectarServidor("Mauricio", "12345");
-        //j2.desconectarServidor();
 
-        System.out.println(Servidor.jugadores);
+        //INTERACTUAR CON JUGADOR DESCONECTADO
+        yo.conectarServidor("Duilio", "12345", "contraseña");
         yo.interactuarCon(j2);
+
+        //INTENTAR CONECTAR CON EL SERVIDOR CON UNA CONTRASEÑA ERRONEA
+        j2.conectarServidor("Mauricio", "12345", "contrasena");
+
+        //INTERACTUAR CON JUGADOR CONECTADO
+        j2.conectarServidor("Mauricio", "12345", "contraseña");
+        yo.interactuarCon(j2);
+
+        //INTERACTUAR ESTANDO DESCONECTADO
         yo.desconectarServidor();
-        System.out.println(Servidor.jugadores);
-        j2.interactuarCon(yo);
-        yo.conectarServidor("Duilio", "12345");
-        if (j2.servidor == yo.servidor) {
-            System.out.println("Este servidor es un Singelton");
+        yo.interactuarCon(j2);
+
+        //CORROBORAR QUE AMBOS ESTEN USANDO LA MISMA INSTANCIA DE SERVIDOR
+        yo.conectarServidor("Duilio", "12345", "contraseña");
+        if (yo.getServidor() == j2.getServidor()) {
+            System.out.println("Se ha usado el Singelton con exito");
         }
     }
 }

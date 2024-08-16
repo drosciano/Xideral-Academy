@@ -2,17 +2,19 @@ import java.util.*;
 
 public class Servidor {
     private static Servidor instance;
-    String conexion;
-    static List<Jugador> jugadores;
+    private String conexion;
+    private static List<Jugador> jugadores;
+    private static String contraseña;
 
-    private Servidor(String conexion) {
+    private Servidor(String conexion, String contraseña) {
         this.conexion = conexion;
+        this.contraseña = contraseña;
         this.jugadores = new ArrayList<Jugador>();
     }
 
     static Servidor getInstance() {
         if (instance == null) {
-            instance = new Servidor("Servidor");
+            instance = new Servidor("Servidor", "contraseña");
         }
         return instance;
     }
@@ -21,8 +23,13 @@ public class Servidor {
         return jugadores.contains(j);
     }
 
-    static void conectar(Jugador j) {
-        jugadores.add(j);
+    static void conectar(Jugador j, String contraseña) throws Exception {
+        if (Servidor.contraseña == contraseña) {
+            jugadores.add(j);
+        }
+        else {
+            throw new Exception(j + ", la contraseña del servidor no es valida");
+        }
     }
 
     static void desconectar(Jugador j) {
