@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
         Manager manager = new Manager();
 
-        Deportista[] deportistas1 = {
+        Athlete[] athletes1 = {
                 new BasketballPlayer("Javier"),
                 new TennisPlayer("Luis"),
                 new TennisPlayer("Gilberto"),
@@ -14,20 +14,20 @@ public class Main {
                 new TaeKwonDoPlayer("Antonio")
         };
 
-        Coach coach1 = manager.createCoachDeportistas("Luis", deportistas1);
-        coach1.ponerEntrenamiento();
-        coach1.ponerCompetir();
-        coach1.ponerDescansar();
+        Coach coach1 = manager.createCoachDeportistas("Luis", athletes1);
+        coach1.goTrain();
+        coach1.goCompete();
+        coach1.goRest();
 
-        Deportista[] deportistas2 = {
+        Athlete[] athletes2 = {
                 new TennisPlayer("Josue"),
                 new BasketballPlayer("Pato"),
                 new SoccerPlayer("Julien")
         };
 
-        coach1.setDeportistas(deportistas2);
-        coach1.ponerEntrenamiento();
-        coach1.ponerCompetir();
-        coach1.ponerDescansar();
+        coach1.setAthletes(athletes2);
+        coach1.goTrain();
+        coach1.goCompete();
+        coach1.goRest();
     }
 }

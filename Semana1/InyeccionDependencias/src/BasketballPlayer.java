@@ -1,23 +1,23 @@
-public class BasketballPlayer implements Deportista {
-    String nombre;
+public class BasketballPlayer implements Athlete {
+    String name;
 
     BasketballPlayer(String nombre) {
-        this.nombre = nombre;
+        this.name = nombre;
     }
 
     @Override
-    public void entrenar() {
-        System.out.println(nombre + " se fue al gimnasio a hacer 100 tiros a la canasta");
+    public void train() {
+        System.out.println(name + " se fue al gimnasio a hacer 100 tiros a la canasta");
     }
 
     @Override
-    public void competir() {
-        System.out.println(nombre + " se fue a otro gimnasio a jugar basket contra otros equipos");
+    public void compete() {
+        System.out.println(name + " se fue a otro gimnasio a jugar basket contra otros equipos");
     }
 
     @Override
-    public void descansar() {
-        System.out.println(nombre + " se fue a casa a descansar");
+    public void rest() {
+        System.out.println(name + " se fue a casa a descansar");
     }
 
 }

@@ -1,46 +1,46 @@
 public class Coach {
-    Deportista[] deportistas;
-    String nombre;
+    Athlete[] athletes;
+    String name;
 
 
-    Coach(String nombre, Deportista[] deportistas) {
-        this.nombre = nombre;
-        this.deportistas = deportistas;
+    Coach(String name, Athlete[] athletes) {
+        this.name = name;
+        this.athletes = athletes;
     }
 
-    Coach(String nombre, Deportista deportista) {
-        this.nombre = nombre;
-        this.deportistas = new Deportista[] {deportista};
+    Coach(String name, Athlete athlete) {
+        this.name = name;
+        this.athletes = new Athlete[] {athlete};
     }
 
-    Coach(String nombre) {
-        this.nombre = nombre;
-        this.deportistas = new Deportista[]{};
+    Coach(String name) {
+        this.name = name;
+        this.athletes = new Athlete[]{};
     }
 
-    public void setDeportistas(Deportista[] deportistas) {
-        this.deportistas = deportistas;
+    public void setAthletes(Athlete[] athletes) {
+        this.athletes = athletes;
     }
 
-    public void setDeportistas(Deportista deportista) {
-        this.deportistas = new Deportista[] {deportista};
+    public void setAthletes(Athlete athlete) {
+        this.athletes = new Athlete[] {athlete};
     }
 
-    public void ponerEntrenamiento() {
-        for(Deportista d : this.deportistas) {
-            d.entrenar();
+    public void goTrain() {
+        for(Athlete d : this.athletes) {
+            d.train();
         }
     }
 
-    public void ponerDescansar() {
-        for (Deportista d : this.deportistas) {
-            d.descansar();
+    public void goRest() {
+        for (Athlete d : this.athletes) {
+            d.rest();
         }
     }
 
-    public void ponerCompetir() {
-        for (Deportista d : this.deportistas) {
-            d.competir();
+    public void goCompete() {
+        for (Athlete d : this.athletes) {
+            d.compete();
         }
     }
 }

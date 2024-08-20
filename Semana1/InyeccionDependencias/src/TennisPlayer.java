@@ -1,24 +1,22 @@
-import java.awt.geom.FlatteningPathIterator;
-
-public class TennisPlayer implements Deportista {
-    String nombre;
+public class TennisPlayer implements Athlete {
+    String name;
 
     TennisPlayer(String nombre) {
-        this.nombre = nombre;
+        this.name = nombre;
     }
 
     @Override
-    public void entrenar() {
-        System.out.println(nombre + " se fue a las canchas de tenis a hacer 100 saques de potencia");
+    public void train() {
+        System.out.println(name + " se fue a las canchas de tenis a hacer 100 saques de potencia");
     }
 
     @Override
-    public void competir() {
-        System.out.println(nombre + " se fue a otras canchas a jugar contra otras personas");
+    public void compete() {
+        System.out.println(name + " se fue a otras canchas a jugar contra otras personas");
     }
 
     @Override
-    public void descansar() {
-        System.out.println(nombre + " se fue a casa a descansar");
+    public void rest() {
+        System.out.println(name + " se fue a casa a descansar");
     }
 }

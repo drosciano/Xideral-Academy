@@ -3,6 +3,13 @@ import Escuela.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        Object[] o = {
+          "Hola",
+          Integer.valueOf(3),
+          new Suma(8, 5)
+        };
+
         //Operaciones
         OperacionAbs[] operaciones = {
                 new Suma(8, 5),
@@ -27,6 +34,10 @@ public class Main {
         for (Estudiante e : estudiantes) {
             System.out.println(e);
             System.out.println(Estudiante.getContador());
+        }
+
+        for (var x : o) {
+            System.out.println(x);
         }
     }
 }
