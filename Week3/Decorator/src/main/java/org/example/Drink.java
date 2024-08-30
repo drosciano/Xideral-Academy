@@ -1,4 +1,6 @@
 package org.example;
 
-public class Drink {
+public interface Drink {
+    String getDescription();
+    double getPrice();
 }
