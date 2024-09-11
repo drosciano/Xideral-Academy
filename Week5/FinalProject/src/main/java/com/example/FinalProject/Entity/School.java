@@ -13,18 +13,12 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Teacher {
+public class School {
     @Id
     @Column
     private int id;
     @Column
-    private String first_name;
+    private String name;
     @Column
-    private String last_name;
-    @Column
-    private int age;
-    @Column
-    private int start_year;
-    @Column
-    private String belt;
+    private String teacher;
 }

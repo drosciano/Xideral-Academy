@@ -91,6 +91,6 @@ public class SpringBatchConfig {
     public TaskExecutor taskExecutor() {
         SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
         asyncTaskExecutor.setConcurrencyLimit(10);
-        return taskExecutor();
+        return asyncTaskExecutor;
     }
 }

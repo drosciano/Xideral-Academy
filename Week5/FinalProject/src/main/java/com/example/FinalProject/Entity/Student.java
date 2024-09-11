@@ -28,8 +28,5 @@ public class Student {
     @Column
     private int start_year;
     @Column
-    private Teacher teacher;
-    @Column
-    private String belt;
-
+    private int school_id;
 }
