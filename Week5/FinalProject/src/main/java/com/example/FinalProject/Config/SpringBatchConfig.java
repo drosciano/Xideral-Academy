@@ -1,7 +1,9 @@
 package com.example.FinalProject.Config;
 
+import com.example.FinalProject.Entity.Belt;
 import com.example.FinalProject.Entity.Student;
 import com.example.FinalProject.Entity.School;
+import com.example.FinalProject.Repository.BeltRepository;
 import com.example.FinalProject.Repository.StudentRepository;
 import com.example.FinalProject.Repository.TeacherRepository;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class SpringBatchConfig {
     private StudentRepository studentRepo;
     private TeacherRepository teacherRepo;
+    private BeltRepository beltRepo;
 
     @Bean
     public FlatFileItemReader<School> teacherReader() {
@@ -86,6 +89,33 @@ public class SpringBatchConfig {
     }
 
     @Bean
+    public FlatFileItemReader<Belt> beltReader() {
+        FlatFileItemReader<Belt> itemReader = new FlatFileItemReader<>();
+        itemReader.setResource(new FileSystemResource(Path_of_the_desired_file));
+        itemReader.setName("csvReader");
+        itemReader.setLinesToSkip(1);
+        itemReader.setLineMapper(beltLineMapper());
+        return itemReader;
+    }
+
+    private LineMapper<Belt> beltLineMapper() {
+        DefaultLineMapper<Belt> lineMapper = new DefaultLineMapper<>();
+
+        DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+        lineTokenizer.setDelimiter(",");
+        lineTokenizer.setStrict(false);
+        lineTokenizer.setNames(Column_names);
+
+        BeanWrapperFieldSetMapper<Belt> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+        fieldSetMapper.setTargetType(Belt.class);
+
+        lineMapper.setLineTokenizer(lineTokenizer);
+        lineMapper.setFieldSetMapper(fieldSetMapper);
+
+        return lineMapper;
+    }
+
+    @Bean
     public TeacherProcessor teacherProcessor() {
         return new TeacherProcessor();
     }
@@ -93,6 +123,11 @@ public class SpringBatchConfig {
     @Bean
     public StudentProcessor studentProcessor() {
         return new StudentProcessor();
+    }
+
+    @Bean
+    public BeltProcessor beltProcessor() {
+        return new BeltProcessor();
     }
 
     @Bean
@@ -107,6 +142,14 @@ public class SpringBatchConfig {
     public RepositoryItemWriter<Student> studentWriter() {
         RepositoryItemWriter<Student> writer = new RepositoryItemWriter<>();
         writer.setRepository(studentRepo);
+        writer.setMethodName("save");
+        return writer;
+    }
+
+    @Bean
+    public RepositoryItemWriter<Belt> beltWriter() {
+        RepositoryItemWriter<Belt> writer = new RepositoryItemWriter<>();
+        writer.setRepository(beltRepo);
         writer.setMethodName("save");
         return writer;
     }
@@ -132,10 +175,21 @@ public class SpringBatchConfig {
     }
 
     @Bean
+    public Step stepBelt(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder("csv-belt-step", jobRepository)
+                .<Belt, Belt>chunk(10, transactionManager)
+                .reader(beltReader())
+                .processor(beltProcessor())
+                .writer(beltWriter())
+                .build();
+    }
+
+    @Bean
     public Job runJob(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new JobBuilder("importStudents", jobRepository)
                 .start(stepTeacher(jobRepository,transactionManager))
                 .next(stepStudent(jobRepository,transactionManager))
+                .next(stepBelt(jobRepository,transactionManager))
                 .build();
     }
 
