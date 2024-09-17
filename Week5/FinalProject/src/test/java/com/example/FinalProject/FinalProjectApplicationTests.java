@@ -1,6 +1,7 @@
 package com.example.FinalProject;
 
 import com.example.FinalProject.controller.StudentController;
+import com.example.FinalProject.entity.Message;
 import com.example.FinalProject.entity.Student;
 import com.example.FinalProject.repository.StudentRepository;
 import org.junit.jupiter.api.Assertions;
@@ -41,6 +42,7 @@ class FinalProjectApplicationTests {
 
 	@Test
 	void getStudents() {
+		Message message = new Message();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		LocalDateTime birth_date = LocalDateTime.parse("2023-08-27 17:48:34",formatter);
 		LocalDateTime start_date = LocalDateTime.parse("2000-02-27 02:11:53",formatter);
