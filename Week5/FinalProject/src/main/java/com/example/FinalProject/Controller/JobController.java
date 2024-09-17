@@ -1,4 +1,4 @@
-package com.example.FinalProject.Controller;
+package com.example.FinalProject.controller;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -14,21 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/TKD")
+@RequestMapping("/tkd")
 public class JobController {
+
     @Autowired
     private JobLauncher jobLauncher;
     @Autowired
     private Job job;
 
     @PostMapping("/importStudents")
-    public void importCsvToDB() {
+    public void importCsvToDBJob() {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("startAt", System.currentTimeMillis()).toJobParameters();
+
         try {
             jobLauncher.run(job, jobParameters);
-        } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
-                 JobParametersInvalidException e) {
+        } catch (JobExecutionAlreadyRunningException | JobParametersInvalidException |
+                 JobInstanceAlreadyCompleteException | JobRestartException e) {
             throw new RuntimeException(e);
         }
     }

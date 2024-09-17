@@ -1,32 +1,43 @@
-package com.example.FinalProject.Entity;
+package com.example.FinalProject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
+import com.fasterxml.jackson.databind.DatabindException;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.Year;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name="student")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int id;
+    int id;
     @Column
-    private String first_name;
+    String school_name;
     @Column
-    private String last_name;
+    String teacher;
     @Column
-    private int age;
+    String first_name;
     @Column
-    private int start_year;
+    String last_name;
     @Column
-    private int school_id;
+    String last_name_2;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    LocalDateTime birth_date;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    LocalDateTime start_date;
+    @Column
+    String occupation;
+    @Column
+    String belt;
 }

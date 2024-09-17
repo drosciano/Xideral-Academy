@@ -1,8 +1,7 @@
-package com.example.FinalProject.Controller;
+package com.example.FinalProject.controller;
 
-import com.example.FinalProject.Config.StudentProcessor;
-import com.example.FinalProject.Entity.Student;
-import com.example.FinalProject.Repository.StudentRepository;
+import com.example.FinalProject.entity.Student;
+import com.example.FinalProject.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/TKD")
+@RequestMapping("/tkd")
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentController {
-
     @Autowired
-    private StudentRepository studentRepository;
+    StudentRepository studentRepository;
 
     @GetMapping("/students")
     public List<Student> getStudents() {
@@ -30,11 +28,6 @@ public class StudentController {
         return studentRepository.findById(id);
     }
 
-    @GetMapping("/student/{teacher_id}")
-    public List<Student> getStudentByTeacher(@PathVariable int teacher_id) {
-        return studentRepository.findByTeacher(teacher_id);
-    }
-
     @PostMapping("/student")
     public Student postStudent(@RequestBody Student student) {
         student.setId(0);
@@ -44,15 +37,25 @@ public class StudentController {
 
     @PutMapping("/student")
     public Student updateStudent(@RequestBody Student student) {
-        return studentRepository.save(student);
+        Student temp = studentRepository.save(student);
+        return temp;
     }
 
     @DeleteMapping("/student/{id}")
     public String deleteStudent(@PathVariable int id) {
-        if (studentRepository.findById(id).isPresent())
-            studentRepository.delete(studentRepository.findById(id).get());
-        else
-            return id + " Student has not been found";
-        return id + " Student has been Deleted Correctly";
+        Student temp = studentRepository.findById(id).get();
+        studentRepository.delete(temp);
+        return id + " Record Deleted";
+    }
+
+    @DeleteMapping("/allStudents")
+    public String deleteAllStudent() {
+        studentRepository.deleteAll();
+        return "All Records Deleted";
+    }
+
+    @GetMapping("/students/{school_name}")
+    public List<Student> getStudentBySchool(@PathVariable String school_name) {
+        return studentRepository.findBySchool(school_name);
     }
 }

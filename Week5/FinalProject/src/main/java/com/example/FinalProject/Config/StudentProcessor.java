@@ -1,6 +1,6 @@
-package com.example.FinalProject.Config;
+package com.example.FinalProject.config;
 
-import com.example.FinalProject.Entity.Student;
+import com.example.FinalProject.entity.Student;
 import org.springframework.batch.item.ItemProcessor;
 
 public class StudentProcessor implements ItemProcessor<Student, Student> {

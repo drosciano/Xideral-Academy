@@ -60,7 +60,7 @@ class SpringJpaCrudApplicationTests {
 	public void getEmployees() {
 		Employee e1 = new Employee(1, "Duilio", "Rosciano", "drosciano@mail.com", "IT");
 		Employee e2 = new Employee(2, "Luis", "Montoua", "lmontoya@mail.com", "Design");
-		List<Employee> result = Arrays.stream(new Employee[]{e1, e2}).toList();
+			List<Employee> result = Arrays.stream(new Employee[]{e1, e2}).toList();
 		Mockito.when(employeeController.getEmployees()).thenReturn(result);
 		List<Employee> temp = employeeController.getEmployees();
 		Assertions.assertEquals(result, temp);
